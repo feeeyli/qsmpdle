@@ -1,27 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+	.dark {
+		--background: 0 0% 100%;
+		--foreground: 222.2 84% 4.9%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 84% 4.9%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 84% 4.9%;
+
+		--primary: 222.2 47.4% 11.2%;
+		--primary-foreground: 210 40% 98%;
+
+		--secondary: 210 40% 96.1%;
+		--secondary-foreground: 222.2 47.4% 11.2%;
+
+		--muted: 210 40% 96.1%;
+		--muted-foreground: 215.4 16.3% 46.9%;
+
+		--accent: 210 40% 96.1%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+		--ring: 222.2 84% 4.9%;
+
+		--radius: 0.5rem;
+	}
+
+	:root {
+		--background: 266 15% 12%;
+		--foreground: 210 20% 98%;
+
+		--card: 266 15% 12%;
+		--card-foreground: 210 20% 98%;
+
+		--popover: 266 15% 12%;
+		--popover-foreground: 210 20% 98%;
+
+		--primary: 262 54% 78%;
+		--primary-foreground: 210 20% 98%;
+
+		--secondary: 262 27.9% 16.9%;
+		--secondary-foreground: 210 20% 98%;
+
+		--muted: 262 27.9% 16.9%;
+		--muted-foreground: 217.9 10.6% 64.9%;
+
+		--accent: 262 27.9% 16.9%;
+		--accent-foreground: 210 20% 98%;
+
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 20% 98%;
+
+		--border: 262 27.9% 16.9%;
+		--input: 262 27.9% 16.9%;
+		--ring: 262 54% 78%;
+
+		--radius: 0.5rem;
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@layer base {
+	* {
+		@apply border-border;
+
+		font-family: "Poppins";
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+
+	.header span {
+		@apply w-24 h-11 flex items-center justify-center text-center text-sm border-b border-b-foreground/20;
+	}
+
+	.row span:nth-child(1) {
+		@apply text-sm w-24 block aspect-square rounded-md bg-muted p-1;
+	}
+
+	.row span:not(span:nth-child(1)) {
+		@apply text-sm w-24 flex items-center justify-center rounded-md text-center text-balance aspect-square bg-muted p-2;
+
+		@apply data-[state=correct]:bg-emerald-500;
+		@apply data-[state=semi]:bg-amber-500;
+		@apply data-[state=wrong]:bg-red-500;
+	}
+
+	/* .guess-input:not(.guess-input:focus) + div {
+		@apply opacity-0;
+	} */
 }
